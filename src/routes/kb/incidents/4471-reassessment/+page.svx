@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 reassessment · two causes concealed by one ticket'
 owner: Abilyne and Codex
-status: proposed
+status: reviewed
 reviewed: '2026-11-01'
 signature: 'Abilyne / Codex / S01E03 / 2026-11-01'
 ---
@@ -15,11 +15,25 @@ signature: 'Abilyne / Codex / S01E03 / 2026-11-01'
   import Reassessment from '#lib/kb/Reassessment.svelte';
 </script>
 
+## Engineering outcome — 5 October 2026
+
+The [course engineering update](https://hq.mega.dev/challenges/what-it-shows#engineering-update)
+now records #4471 as closed on 5 October:
+
+- [Parser issue #1](https://github.com/Abilyne/mega-s01e03/issues/1): **fixed** — `fix(dates): parse dd/mm for eu locales`. Closed as completed.
+- [Hint issue #2](https://github.com/Abilyne/mega-s01e03/issues/2): **won’t fix** — booking-v3 form retired. Closed as not planned; no hint fix was shipped.
+
+These are the desk’s reported engineering outcomes. The original export predates them.
+Our first closure treated both as completed analysis and missed this new evidence; this
+update corrects that distinction. The report counts below remain historical. The five
+unusual observations still lack individual reproduction or resolution evidence in the
+provided material; the parser closure does not prove each was explained.
+
 ## Finding and scope
 
 The [original incident](/kb/incidents/4471/) calls this one known parser issue. Its rendered
 cause table contradicts that claim: booking-v3's form hint is a separate problem without
-its own ticket. Fixing the shared parser does not fix that hint.
+its own ticket. The shared parser fix did not fix that hint; retiring the affected form removed that path.
 
 This review uses the desk export dated 4 October 2026. It is a historical snapshot, not a
 live queue. All totals below are computed from unique report IDs merged into this ticket,
@@ -27,7 +41,7 @@ joined to the tenant directory. Browser locale and intake tags are not ground tr
 
 <CauseTable ticket={4471} />
 
-## Separate fixes
+## Distinct causes and validation
 
 **Parser:** the shared parser treats dates as month-first even for day-first tenants.
 Use the tenant's date convention at that boundary, preferably converting validated inputs
@@ -67,7 +81,7 @@ the split; this exported page does not change the live desk's workflow.
 
 ## Follow-up
 
-Route parser and hint reports to separate engineering issues. Preserve report IDs and
+The two linked engineering issues now record different closure reasons. Preserve report IDs and
 the exceptional observations when moving reports. After each fix, replay representative
 cases and monitor fresh reports by cause, not by subject or the old ticket's status.
 Refresh this page from a new export before presenting its counts as current.

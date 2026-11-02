@@ -41,3 +41,10 @@ Tables, timeline, dedupe examples, and desk reference are computed during render
 
 Counts describe the export, not the current queue. Rebuild with fresh desk data and
 review the resulting groups before updating issue counts.
+
+## Engineering update
+
+The course page subsequently reported #4471 closed on 5 October: parser fixed
+(`fix(dates): parse dd/mm for eu locales`); hint won’t fix because booking-v3 was retired.
+GitHub #1 records completed; #2 records not planned. The initial analysis-only closure
+was corrected after checking the changed challenge page.

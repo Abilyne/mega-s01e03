@@ -4,7 +4,9 @@ import shutil
 
 source = Path('build')
 output = Path('rendered')
-shutil.copytree(source, output, dirs_exist_ok=True)
+if output.exists():
+    shutil.rmtree(output)
+shutil.copytree(source, output)
 p = source / 'kb/incidents/4471-reassessment/index.html'
 html = p.read_text()
 def inline_css(match):

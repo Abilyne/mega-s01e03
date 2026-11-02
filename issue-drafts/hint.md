@@ -25,3 +25,7 @@ This group’s intake tags: 15 tagged parser, 18 tagged hint.
 ## Included report IDs
 
 R-41230, R-41241, R-41251, R-41259, R-41262, R-41275, R-41294, R-41305, R-41308, R-41366, R-41372, R-41384, R-41387, R-41396, R-41400, R-41406, R-41415, R-41416, R-41418, R-41428, R-41439, R-41441, R-41449, R-41453, R-41456, R-41460, R-41472, R-41485, R-41493, R-41539, R-41572, R-41582, R-41584
+
+## Engineering outcome — 5 October 2026
+
+**Won’t fix; closed as not planned.** The course engineering update dated 5 October says booking-v3 form was retired. No hint fix was shipped. Source: https://hq.mega.dev/challenges/what-it-shows#engineering-update . This supersedes the earlier analysis-only closure comment. The export counts remain historical.
