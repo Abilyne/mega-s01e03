@@ -4,7 +4,7 @@ title: '#4471 reassessment · two causes concealed by one ticket'
 owner: Abilyne and Codex
 status: reviewed
 reviewed: '2026-11-01'
-signature: 'Abilyne / Codex / S01E03 / 2026-11-01'
+signature: 'v1.eyJzdWIiOiI2MDM2IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM1OTM4NjQsImV4cCI6MTc5MzY4MDI2NH0.Kb8a_IUYrk-SotX1XI6wyVafSzjvTAB3LeESXVcnIlw'
 ---
 
 <script>
