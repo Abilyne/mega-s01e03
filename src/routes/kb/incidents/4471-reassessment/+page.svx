@@ -1,0 +1,75 @@
+---
+layout: runbook
+title: '#4471 reassessment · two causes concealed by one ticket'
+owner: Abilyne and Codex
+status: proposed
+reviewed: '2026-11-01'
+signature: 'Abilyne / Codex / S01E03 / 2026-11-01'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  import Reassessment from '#lib/kb/Reassessment.svelte';
+</script>
+
+## Finding and scope
+
+The [original incident](/kb/incidents/4471/) calls this one known parser issue. Its rendered
+cause table contradicts that claim: booking-v3's form hint is a separate problem without
+its own ticket. Fixing the shared parser does not fix that hint.
+
+This review uses the desk export dated 4 October 2026. It is a historical snapshot, not a
+live queue. All totals below are computed from unique report IDs merged into this ticket,
+joined to the tenant directory. Browser locale and intake tags are not ground truth.
+
+<CauseTable ticket={4471} />
+
+## Separate fixes
+
+**Parser:** the shared parser treats dates as month-first even for day-first tenants.
+Use the tenant's date convention at that boundary, preferably converting validated inputs
+to an unambiguous date representation. Test app, email, and booking-v2 paths, ambiguous
+dates such as 07/04, dates whose day exceeds twelve, and month-first tenants for regressions.
+
+**Hint:** booking-v3 prints `MM/DD/YYYY`, while its form reads dates in the day-first
+tenant's convention. Make the displayed hint and accepted format agree. Test the form
+for Alder Physio, Copper Studio, and Pale Harbour; changing the shared parser alone
+cannot correct misleading instructions on this path.
+
+<Reassessment />
+
+## What the queue shows
+
+Reports arrived before the July merge wave. The wave records desk consolidation, not
+the beginning of the incident. Reports continue after consolidation, through the end
+of the export; a known label and a queued fix are not evidence of recovery.
+
+<QueueTimeline ticket={4471} />
+
+## Stop merging on subject alone
+
+The [triage page](/kb/triage/dedupe/) and [accepted decision 0001](/kb/decisions/0001-dedupe-by-subject/)
+are stale. Their prose says matching subjects establish a duplicate, but their own
+interactive examples distinguish causes by tenant and entry channel. Identical wording
+can hide different causes; different wording can describe the same cause. An unknown
+tenant does not establish a match.
+
+<DedupeExplorer />
+
+Keep decision 0001 unchanged as historical evidence. Proposed replacement: read the
+report, identify tenant locale and form version, inspect the entry path and observed
+behavior, then merge only when the cause is supported. Keep uncertain reports visible
+for investigation. The desk owner must adopt this policy and review new arrivals against
+the split; this exported page does not change the live desk's workflow.
+
+## Follow-up
+
+Route parser and hint reports to separate engineering issues. Preserve report IDs and
+the exceptional observations when moving reports. After each fix, replay representative
+cases and monitor fresh reports by cause, not by subject or the old ticket's status.
+Refresh this page from a new export before presenting its counts as current.
+
+<RenderStamp {signature} />
